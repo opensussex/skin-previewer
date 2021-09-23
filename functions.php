@@ -47,7 +47,7 @@ function create_skin($file, $name)
     imagefill($preview_skin, 0, 0, imagecolorallocatealpha($preview_skin, 0, 0, 0, 127));
 
     imagecopyresized($cropped_skin, $original_skin, 0, 0, 0, 0, 64, 32, 64, 32);
-    imagepng($cropped_skin, $name . ".png");
+    imagepng($cropped_skin, "skins_out/" . $name . ".png");
 
     //head
     imagecopyresized($preview_skin, $original_skin, 4, 0, 8, 8, 8, 8, 8, 8);
@@ -82,7 +82,7 @@ function create_skin($file, $name)
     imageflip($left_leg, IMG_FLIP_HORIZONTAL);
     imagecopyresized($preview_skin, $left_leg, 8, 20, 0, 0, 4, 12, 4, 12);
 
-    imagepng($preview_skin, $preview);
+    imagepng($preview_skin, "skins_out/" . $preview);
 
     imagedestroy($cropped_skin);
     imagedestroy($original_skin);
