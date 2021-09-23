@@ -6,3 +6,7 @@ A simple command line tool to take a skin and make it a 64x32 skin and then make
 This preview is not "True" - as we use the right arm for both left and right and just flip.
 
 BUT it's enough for what we need.
+
+To create a minetest skin and preview just run `php create_preview.php Dude.png` for example.
+
+
