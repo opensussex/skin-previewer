@@ -33,7 +33,7 @@ function output($string, $colour = "none")
 }
 
 
-function create_skin($file, $name)
+function create_skin($file, $name, $outdir = "skins_out/")
 {
     $file_explode = explode('.', $file);
     $preview = $name . '-preview' . '.png';
@@ -47,7 +47,7 @@ function create_skin($file, $name)
     imagefill($preview_skin, 0, 0, imagecolorallocatealpha($preview_skin, 0, 0, 0, 127));
 
     imagecopyresized($cropped_skin, $original_skin, 0, 0, 0, 0, 64, 32, 64, 32);
-    imagepng($cropped_skin, "skins_out/" . $name . ".png");
+    imagepng($cropped_skin, $outdir . $name . ".png");
 
     //head
     imagecopyresized($preview_skin, $original_skin, 4, 0, 8, 8, 8, 8, 8, 8);
@@ -82,7 +82,7 @@ function create_skin($file, $name)
     imageflip($left_leg, IMG_FLIP_HORIZONTAL);
     imagecopyresized($preview_skin, $left_leg, 8, 20, 0, 0, 4, 12, 4, 12);
 
-    imagepng($preview_skin, "skins_out/" . $preview);
+    imagepng($preview_skin, $outdir . $preview);
 
     imagedestroy($cropped_skin);
     imagedestroy($original_skin);
@@ -90,3 +90,47 @@ function create_skin($file, $name)
     imagedestroy($left_arm);
     imagedestroy($left_leg);
 }
+
+ function rrmdir($dir) { 
+   if (is_dir($dir)) { 
+     $objects = scandir($dir);
+     foreach ($objects as $object) { 
+       if ($object != "." && $object != "..") { 
+         if (is_dir($dir. DIRECTORY_SEPARATOR .$object) && !is_link($dir."/".$object))
+           rrmdir($dir. DIRECTORY_SEPARATOR .$object);
+         else
+           unlink($dir. DIRECTORY_SEPARATOR .$object); 
+       } 
+     }
+     rmdir($dir); 
+   } 
+ }
+
+function copy_dir($src, $dst) { 
+   
+    // open the source directory
+    $dir = opendir($src); 
+   
+    // Make the destination directory if not exist
+    @mkdir($dst); 
+   
+    // Loop through the files in source directory
+    foreach (scandir($src) as $file) { 
+   
+        if (( $file != '.' ) && ( $file != '..' )) { 
+            if ( is_dir($src . '/' . $file) ) 
+            { 
+   
+                // Recursively calling custom copy function
+                // for sub directory 
+                copy_dir($src . '/' . $file, $dst . '/' . $file); 
+   
+            } 
+            else { 
+                copy($src . '/' . $file, $dst . '/' . $file); 
+            } 
+        } 
+    } 
+   
+    closedir($dir);
+}  
