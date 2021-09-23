@@ -36,7 +36,7 @@ foreach ($initial_skins as $skin) {
     output("* Creating Skin " . $skin_name . " " . $skins_output_directory, "cyan");
 
     create_skin($skins_directory . "/" . $skin, $skin_name, $skins_output_directory);
-    $skins_list[] = $skin_name;
+    $skins_list[] = '"' . $skin_name . '"';
 }
 
 //replace string in init.lua
