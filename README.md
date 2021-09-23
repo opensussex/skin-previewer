@@ -9,4 +9,8 @@ BUT it's enough for what we need.
 
 To create a minetest skin and preview just run `php create_preview.php Dude.png` for example.
 
+To batch convert a whole load of skins and then create a minetest mod that uses the wardrobe mod 
 
+`php create_skin_mod.php skins_temp/Newskins mod_outputs/newMod n00b`
+
+this tool was inspired by https://wiki.minetest.net/Mods/Wardrobe#Skins_File_Syntax
